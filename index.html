@@ -35,76 +35,6 @@
         </nav>
     </header>
 
-    <!-- MODAL DE NUEVA OPERACION -->
-    <section class="section mt-5 vista is-hidden" id="vista-operacion">
-        <div class="container">
-            <div class="columns is-multiline">
-                <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
-                    <div class="box">
-                        <h2 class="title is-size-2 has-text-weight-bold">Nueva Operación</h2>
-                        <div class="field mt-6">
-                            <label for="description-input" class="label">Descripción</label>
-                            <div class="control">
-                                <div class="is-fullwidth">
-                                    <input type="text" class="input" id="input-descripcion">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="monto-input" class="label">Monto</label>
-                            <div class="control">
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input type="number" class="input" id="input-monto" value="0">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="tipo-select" class="label">Tipo</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select id="operacion">
-                                        <option value="gasto">Gasto</option>
-                                        <option value="ganancia">Ganancia</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="categorias-select" class="label">Categoría</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select id="categorias-select" class="categorias-select">
-                                        <option value="Comida">Comida</option>
-                                        <option value="Servicios">Servicios</option>
-                                        <option value="Salidas">Salidas</option>
-                                        <option value="Educación">Educación</option>
-                                        <option value="Transporte">Transporte</option>
-                                        <option value="Trabajo">Trabajo</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="fecha-input" class="label">Fecha</label>
-                            <div class="control">
-                                <div class="is-fullwidth">
-                                    <input type="date" class="input" id="input-fecha">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="buttons mt-6">
-                            <button class="button is-light" id="cancelar-agregar-operacion-boton">Cancelar</button>
-                            <button class="button is-success" id="agregar-operacion-boton">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <!-- BALANCE Y FILTROS -->
     <section class="section mt-5 vista" id="balance-box">
         <div class="container">
@@ -210,6 +140,75 @@
                             <h4 class="is-size-4 has-text-centered mt-6 mb-4 has-text-weight-semibold">Sin Resultados
                             </h4>
                             <p class="has-text-centered">Cambia los filtros o agrega operaciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE NUEVA OPERACION -->
+    <section class="section mt-5 vista is-hidden" id="vista-operacion">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
+                    <div class="box">
+                        <h2 class="title is-size-2 has-text-weight-bold">Nueva Operación</h2>
+                        <div class="field mt-6">
+                            <label for="description-input" class="label">Descripción</label>
+                            <div class="control">
+                                <div class="is-fullwidth">
+                                    <input type="text" class="input" id="input-descripcion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="monto-input" class="label">Monto</label>
+                            <div class="control">
+                                <div class="control">
+                                    <div class="is-fullwidth">
+                                        <input type="number" class="input" id="input-monto" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="tipo-select" class="label">Tipo</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="operacion">
+                                        <option value="gasto">Gasto</option>
+                                        <option value="ganancia">Ganancia</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="categorias-select" class="label">Categoría</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="categorias-select" class="categorias-select">
+                                        <option value="Comida">Comida</option>
+                                        <option value="Servicios">Servicios</option>
+                                        <option value="Salidas">Salidas</option>
+                                        <option value="Educación">Educación</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Trabajo">Trabajo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="fecha-input" class="label">Fecha</label>
+                            <div class="control">
+                                <div class="is-fullwidth">
+                                    <input type="date" class="input" id="input-fecha">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons mt-6">
+                            <button class="button is-light" id="cancelar-agregar-operacion-boton">Cancelar</button>
+                            <button class="button is-success" id="agregar-operacion-boton">Agregar</button>
                         </div>
                     </div>
                 </div>
