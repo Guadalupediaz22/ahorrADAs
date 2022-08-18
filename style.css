@@ -1,1 +1,20 @@
 
+mi-flex{
+    display:flex;
+}
+
+.green{
+    color: green;
+}
+
+.green ::before{
+    content: '+';
+}
+
+.red{
+    color: red;
+}
+
+.red ::before {
+    content: '-';
+}
