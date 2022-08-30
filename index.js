@@ -3,15 +3,33 @@ const verBalance = document.getElementById('balance-nav')
 const verCategorias = document.getElementById('categorias-nav')
 const verReportes = document.getElementById('reportes-nav')
 const verOperacion=  document.getElementById('btn-nueva-operacion')
+//btn de nueva operacion
 const verAgregarOperacionBtn=  document.getElementById('agregar-operacion-btn')
 const verCancelarOperacionBtn=  document.getElementById('cancelar-operacion-btn')
+//btn editar operacion
+const verEditoOperacion= document.getElementById('editar-operacion') //agrego editar operacion btn
+const verCancelarOperacion=document.getElementById('cancelar-operacion') //agrego  
+//btn elimina-cancela operacion 
+const verEliminaOperacion= document.getElementById('btn-elimina') //agrego
+const verCancelOperacion= document.getElementById('btn-cancela') // agrego
+ 
 
-
-
+//nav
 const vistaBalance = document.getElementById('balance-box')
 const vistaCategoria = document.getElementById('vista-categorias')
 const vistaReportes = document.getElementById('vista-reportes')
 const vistaOperacion= document.getElementById('vista-operacion')
+//nueva operacion
+const vistaEditarOperacion= document.getElementById('vista-editar-operacion')//agrego
+const vistaCancelarOperacion= document.getElementById('vista-editar-operacion')//agrego 
+//editar operacion 
+const vistaEditoOperacion=document.getElementById('vista-edito-operacion')//agrego
+const vistaCancelOperacion= document.getElementById('vista-edito-operacion')//agrego
+    
+//elimina operacion 
+const vistaEliminaOperacion = document.getElementById('elimina-operacion')//agrego
+const vistaCxlOperacion= document.getElementById('elimina-operacion')//agrego
+
 
 //inputs agrega operacion 
 const descripcionInput = document.getElementById('descripcion')
@@ -66,13 +84,18 @@ const mostraroperaciones = (arr) =>{
 vistaCategoria.classList.add('is-hidden')
 vistaReportes.classList.add('is-hidden')
 vistaOperacion.classList.add('is-hidden')
+vistaEditoOperacion.classList.add('is-hidden')/*agrego*/
+//vistaCancelarOperacion.classList.add('is-hidden')/*agrego*/
+vistaEliminaOperacion.classList.add('is-hidden')
+
 
 verBalance.addEventListener('click', () =>{
     vistaBalance.classList.remove('is-hidden')
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    
+    vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.add('is-hidden')//hoy
 })
 
 verCategorias.addEventListener('click', () => {
@@ -80,6 +103,8 @@ verCategorias.addEventListener('click', () => {
     vistaCategoria.classList.remove('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
+    vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.add('is-hidden')//hoy
 
   })
 
@@ -88,16 +113,39 @@ verReportes.addEventListener ('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.remove('is-hidden')
     vistaOperacion.classList.add('is-hidden')
+    vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.add('is-hidden')//hoy
     
 })
 
-verOperacion.addEventListener ('click',() => {
+verOperacion.addEventListener ('click', () => {
     vistaBalance.classList.add('is-hidden')
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.remove('is-hidden')
+    vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.add('is-hidden')//hoy
 })
-/*ulitmo agrego 74-99*/
+
+verEditoOperacion.addEventListener ('click', () => {
+    vistaBalance.classList.add('is-hidden')
+    vistaCategoria.classList.add('is-hidden')
+    vistaReportes.classList.add('is-hidden')
+    vistaOperacion.classList.add('is-hidden')
+    vistaEditoOperacion.remove('is-hidden')/*agrego*/
+    vistaEliminaOperacion.add('is-hidden')//hoy
+})
+//hoy
+verEliminaOperacion.addEventListener ('click', () => {
+    vistaBalance.classList.add('is-hidden')
+    vistaCategoria.classList.add('is-hidden')
+    vistaReportes.classList.add('is-hidden')
+    vistaOperacion.classList.add('is-hidden')
+    vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.remove('is-hidden')//hoy
+})
+
+
 
 verAgregarOperacionBtn.addEventListener('click', () => {
     //console.log(descripcionInput.value.trim().length)
@@ -156,14 +204,7 @@ verAgregarOperacionBtn.addEventListener('click', () => {
     
 
     pintoOperaciones(operaciones)
-
-    /*vistaBalance.classList.remove('is-hidden')
-    vistaCategoria.classList.add('is-hidden')
-    vistaReportes.classList.add('is-hidden')
-    vistaOperacion.classList.add('is-hidden')
-    document.getElementById('sin-operaciones').classList.add('is-hidden')
-    document.getElementById('con-operaciones').classList.remove('is-hidden')*/
-    
+ 
 })
 
 
@@ -175,7 +216,7 @@ const pintoOperaciones = (arr) => {
         //hace destructuring para sacar las propiedades
         const {id, descripcion, categoria, fecha, monto, tipo} = operacion;
 
-        //let color = tipo =='ganancia' ? 'green':  'red';
+        let color = tipo =='ganancia' ? 'green':  'red';
 
         str =str + `
         
@@ -187,21 +228,25 @@ const pintoOperaciones = (arr) => {
             <div class="column has-text-weight-bold is-2 has-text-right">Acciones</div>
          </div>
 
-        <div  class="mi-flex" is-flex-direccion-row"><div class="columns has-text-weight-semibold is-hidden-movile">
+        <div  class="mi-flex is-flex-direction-row"><div class="columns has-text-weight-semibold is-hidden-movile">
             <span class="column is-3">${descripcion}</span>
             <span class="column notification is-info is-light is-3 is-size-6"> ${categoria} </span>
-            <span class="column is-2 has-text-right">${fecha}</span>
-            <span class="column is-2 has-text-right ${tipo ==  'ganancia' ? 'green': 'red'}"> ${monto} </span>
+            <span class="column is-2 has-text-right fecha">${fecha}</span>
+            <span class="column is-2 has-text-right ${tipo ==  'Ganancia' ? 'green': 'red'}"> ${monto} </span>
             <span class="column is-2 has-text-right">
-                <a  href="#">Editar</a>
-                <a class="boton-borrar" id=${id} href="#">Borrar</a>
+            <a class="boton-editar data-id=${id} " href="#">Editar</a>
+            <a class="boton-borrar data-id=${id}" href="#">Borrar</a>        
             </span>   
         </div>`
 
     })
     document.getElementById('con-operaciones').innerHTML = str;
 }
+
+
+
   
-        
+
+
 
         

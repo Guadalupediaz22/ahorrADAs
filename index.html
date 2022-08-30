@@ -144,9 +144,10 @@
                                     Operación</button>
                             </div>
                         </div>
-                        <!--agrego div-->
+                    <!--agrego div-->
                         <div id="con-operaciones" class="is-hidden">
-                        <div class="columns has-text-weight-semibold is-hidden-movile">
+                            <div class="columns has-text-weight-semibold is-hidden-movile">
+                        
                                 <div class="column is-3">Descripción</div>
                                 <div class="column is-3">Categoría</div>
                                 <div class="column is-2 has-text-right">Fecha</div>
@@ -203,7 +204,7 @@
                     <div class="mb-3">
                     <label for="descripcion" class="form-label">Descripcion</label>
                     <input type="texto" class="form-control" id="descripcion" aria-describedby="descripcion">
-                   required 
+                   
                     </div>
                     <div class="mb-3">
                         <label for="monto" class="form-label">Monto</label>
@@ -237,19 +238,87 @@
                        
                     </div>
                     <button id="agregar-operacion-btn" type="button" class="btn button is-info">Agregar</button>
-                    <button id="cancelar-operacion-btn" type="button" class="btn btn-light">Cancel</button>
+                    <button id="cancelar-operacion-btn" type="button" class="btn btn-light">Cancelar</button>
                 </form>
             </div>
         </div>
+</div>
+<!--fin  nueva operacion-->
+
+<!--editar operacion--> 
+<div class="conteiner" id="vista-edito-operacion">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form class="shadow-lg p-3 mb-5 bg-body rounded mt-5">
+                <h2 class="mb-5">Editar Operación</h2>
+                <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <input type="texto" class="form-control" id="descripcion" aria-describedby="descripcion">
+            </form>      
+        </div>
+        <div class="mb-3">
+            <label for="monto" class="form-label">Monto</label>
+            <input type="number" class="form-control" id="monto">
+        </div>
+        
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+                <select id="tipo" class="form-select" aria-label="Default select example">
+                    <option value"gasto" selected>Gastos</option>
+                    <option value="ganancia">Ganancia</option>
+                </select> 
+        </div>
+                        
+        <div class="mb-3">
+            <label for="catergoria" class="form-label">Categoria</label>
+            <select id="categoria" class="form-select" aria-label="Default select example">
+                <option value"comida" selected>Comida</option>
+                <option value="servicios">Servicios</option>
+                <option value="salidas">Salidas</option>
+                <option value="educacion">Educación</option>
+                <option value="transporte">Transporte</option>
+                <option value="educacion">Educación</option>
+        
+            </select> 
+        </div>
+        
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" aria-describedby="fecha-imput">
+                           
+        </div>
+        <button id="editar-operacion" type="button" class="btn-editar is-info">Editar</button>
+        <button id="cancelar-operacion" type="button" class="btn-cancelar is-light">Cancelar</button>
+            
+        </div>
     </div>
-    <!--fin  nueva operacion-->
+</div>
+ <!--fin editar categorias-->    
 
 
+<!-- elimina operacion -->
+<div class="conteiner" id="elimina-operacion">
+    <div class="row justify-content-center">
+        <div class="col-md-8 modal-dialog shadow-lg p-3 mb-5 bg-body rounded mt-5r">
+            <div class="col-md 12 modalEliminarVentas">
+                <p style="font-size:20px">¿Está Seguro?</p>
+                <p style="color:black; font-size:15px">Esta acción no se puede revertir</p>
+            </div>
+
+            <div class="column has-text-right-tablet">
+                <button class="button is-info is-focused" type="button" id="btn-elimina">Eliminar</button>
+                <button class="button is-info is-focused" type="button" id="btn-cancela">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--fin elimina operacion-->
 
 
 
     <!--CATEGORIAS-->
-    <div class="conteiner" id="vista-categorias">
+<div class="conteiner" id="vista-categorias">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form class="shadow-lg p-3 mb-5 bg-body rounded mt-5">
@@ -328,58 +397,11 @@
                 </form>
             </div>
         </div>
-    </div>
+</div>
     
     <!--fin categorias-->
 
-    <!--editar categoria--> 
-    <div class="conteiner" id="vista-operacion">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <form class="shadow-lg p-3 mb-5 bg-body rounded mt-5">
-                        <h2 class="mb-5">Editar Categoria</h2>
-                        <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <input type="texto" class="form-control" id="descripcion" aria-describedby="descripcion">
-                       required 
-                        </div>
-                        <div class="mb-3">
-                            <label for="monto" class="form-label">Monto</label>
-                            <input type="number" class="form-control" id="monto">
-                        </div>
-        
-                        <div class="mb-3">
-                           <label for="tipo" class="form-label">Tipo</label>
-                            <select id="tipo" class="form-select" aria-label="Default select example">
-                                <option value"gasto" selected>Gastos</option>
-                                <option value="ganancia">Ganancia</option>
-                            </select> 
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="catergoria" class="form-label">Categoria</label>
-                            <select id="categoria" class="form-select" aria-label="Default select example">
-                                <option value"comida" selected>Comida</option>
-                                <option value="servicios">Servicios</option>
-                                <option value="salidas">Salidas</option>
-                                <option value="educacion">Educación</option>
-                                <option value="transporte">Transporte</option>
-                                <option value="educacion">Educación</option>
-        
-                            </select> 
-                        </div>
-        
-                        <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha</label>
-                            <input type="date" class="form-control" id="fecha" aria-describedby="fecha-imput">
-                           
-                        </div>
-                        <button id="agregar-operacion-btn" type="button" class="btn button is-info">Agregar</button>
-                        <button id="cancelar-operacion-btn" type="button" class="btn btn-light">Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+
     <!--fin editar categorias-->                                            
 
 

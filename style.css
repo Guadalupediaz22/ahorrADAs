@@ -8,7 +8,7 @@ mi-flex{
 }
 
 .green ::before{
-    content: '+';
+    content: '+$';
 }
 
 .red{
@@ -16,5 +16,9 @@ mi-flex{
 }
 
 .red ::before {
-    content: '-';
+    content: '-$';
+}
+
+.fecha{
+    font-size: 9rem;
 }
