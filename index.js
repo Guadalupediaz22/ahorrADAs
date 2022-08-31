@@ -10,8 +10,8 @@ const verCancelarOperacionBtn=  document.getElementById('cancelar-operacion-btn'
 const verEditoOperacion= document.getElementById('editar-operacion') //agrego editar operacion btn
 const verCancelarOperacion=document.getElementById('cancelar-operacion') //agrego  
 //btn elimina-cancela operacion 
-const verEliminaOperacion= document.getElementById('btn-elimina') //agrego
-const verCancelOperacion= document.getElementById('btn-cancela') // agrego
+const btnEliminaOperacion= document.getElementById('btn-elimina') //agrego
+const btnCancelaOperacion= document.getElementById('btn-cancela') // agrego
  
 
 //nav
@@ -28,7 +28,7 @@ const vistaCancelOperacion= document.getElementById('vista-edito-operacion')//ag
     
 //elimina operacion 
 const vistaEliminaOperacion = document.getElementById('elimina-operacion')//agrego
-const vistaCxlOperacion= document.getElementById('elimina-operacion')//agrego
+//const vistaCxlOperacion= document.getElementById('elimina-operacion')//agrego
 
 
 //inputs agrega operacion 
@@ -48,7 +48,7 @@ const categorias = [
     'Trabajo'
 ];
 
-const operaciones= [];
+var operaciones= [];
 
 //const operaciones2 = JSON.parse(localStorage.getItem('operaciones'));
 
@@ -94,8 +94,8 @@ verBalance.addEventListener('click', () =>{
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.classList.add('is-hidden')//hoy
 })
 
 verCategorias.addEventListener('click', () => {
@@ -103,8 +103,8 @@ verCategorias.addEventListener('click', () => {
     vistaCategoria.classList.remove('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.classList.add('is-hidden')//hoy
 
   })
 
@@ -113,8 +113,8 @@ verReportes.addEventListener ('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.remove('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.classList.add('is-hidden')//hoy
     
 })
 
@@ -123,29 +123,25 @@ verOperacion.addEventListener ('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.remove('is-hidden')
-    vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')/*agrego*/
+    vistaEliminaOperacion.classList.add('is-hidden')//hoy
 })
 
-verEditoOperacion.addEventListener ('click', () => {
-    vistaBalance.classList.add('is-hidden')
+
+
+
+
+
+var editar=false;
+var idEditar="";
+
+verCancelarOperacionBtn.addEventListener('click', () => {
+    vistaBalance.classList.remove('is-hidden')
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    vistaEditoOperacion.remove('is-hidden')/*agrego*/
-    vistaEliminaOperacion.add('is-hidden')//hoy
+    vistaEliminaOperacion.classList.add('is-hidden')//hoy*/
 })
-//hoy
-verEliminaOperacion.addEventListener ('click', () => {
-    vistaBalance.classList.add('is-hidden')
-    vistaCategoria.classList.add('is-hidden')
-    vistaReportes.classList.add('is-hidden')
-    vistaOperacion.classList.add('is-hidden')
-    vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.remove('is-hidden')//hoy
-})
-
-
 
 verAgregarOperacionBtn.addEventListener('click', () => {
     //console.log(descripcionInput.value.trim().length)
@@ -162,40 +158,51 @@ verAgregarOperacionBtn.addEventListener('click', () => {
         return 
     }
 
+    if(!editar)
+    {
+        var wid = uuidv4 ();
+        var wdescripcion = descripcionInput.value;
+        var wmonto = montoInput.value;
+        var wtipo = tipoOperacion.value;
+        var wcategoria = categoriaSelect.value;
+        var wfecha = FechaImput.value;
 
-    var wid = uuidv4 ();
-    var wdescripcion = descripcionInput.value;
-    var wmonto = montoInput.value;
-    var wtipo = tipoOperacion.value;
-    var wcategoria = categoriaSelect.value;
-    var wfecha = FechaImput.value;
+        //creo un objeto por cada operacion
+        const operacion = {
+            id: uuidv4 (),
+            descripcion: descripcionInput.value,
+            monto: montoInput.value,
+            tipo: tipoOperacion.value,
+            categoria: categoriaSelect.value,
+            fecha: FechaImput.value,
+        }
+        //agrego el obj (operacion)al arreglo de operaciones
+        operaciones.push(operacion)
 
-    //creo un objeto por cada operacion
-    const operacion = {
-        id: uuidv4 (),
-        descripcion: descripcionInput.value,
-        monto: montoInput.value,
-        tipo: tipoOperacion.value,
-        categoria: categoriaSelect.value,
-        fecha: FechaImput.value,
     }
-    //agrego el obj (operacion)al arreglo de operaciones
-    operaciones.push(operacion)
-    //escondo la vista formulario y muestro la vista de listas d las operaciones
-    vistaOperacion.classList.add('is-hidden')
-    vistaBalance.classList.remove('is-hidden')
-    vistaCategoria.classList.add('is-hidden')
-    vistaReportes.classList.add('is-hidden')
-    vistaOperacion.classList.add('is-hidden')
+    else
+    {
+        var ope=operaciones.filter(operacion => operacion.id==idEditar);
+        ope[0].descripcion =  descripcionInput.value;
+        ope[0].monto =  montoInput.value;
+        ope[0].tipo = tipoOperacion.value;
+        ope[0].categoria = categoriaSelect.value;
+        ope[0].fecha = FechaImput.value;
+    }
 
-    //limpio los Input para que me regrese al menu inicial
-    descripcionInput.value=''
-    montoInput.value = 0
-    tipoOperacion.value ='Ganancia'
-    categoriaSelect.value = 'Servicios'
-    FechaImput.value = new Date()
-    
-    
+        //escondo la vista formulario y muestro la vista de listas d las operaciones
+        vistaOperacion.classList.add('is-hidden')
+        vistaBalance.classList.remove('is-hidden')
+        vistaCategoria.classList.add('is-hidden')
+        vistaReportes.classList.add('is-hidden')
+        vistaOperacion.classList.add('is-hidden')
+
+        //limpio los Input para que me regrese al menu inicial
+        descripcionInput.value=''
+        montoInput.value = 0
+        tipoOperacion.value ='Ganancia'
+        categoriaSelect.value = 'Servicios'
+        FechaImput.value = null;
 
     mostraroperaciones(operaciones)
     // guardo el arreglo en LS
@@ -204,12 +211,28 @@ verAgregarOperacionBtn.addEventListener('click', () => {
     
 
     pintoOperaciones(operaciones)
+
+    editar=false;
  
 })
 
 
 const pintoOperaciones = (arr) => {
+    document.getElementById('operaciones').innerHTML= '' //agrego
     let str= '';
+
+    str =str + `
+        
+    <div class="columns has-text-weight-semibold is-hidden-movile">
+        <div class="column has-text-weight-bold is-3">Descripción</div>
+        <div class="column has-text-weight-bold is-3">Categoría</div>
+        <div class="column has-text-weight-bold is-2 has-text-right">Fecha</div>
+        <div class="column has-text-weight-bold is-2 has-text-right">Monto</div>
+        <div class="column has-text-weight-bold is-2 has-text-right">Acciones</div>
+     </div>
+
+    `
+
     //recorre el array por cada operacion
     arr.forEach((operacion) =>{
         console.log(operacion)
@@ -219,14 +242,7 @@ const pintoOperaciones = (arr) => {
         let color = tipo =='ganancia' ? 'green':  'red';
 
         str =str + `
-        
-        <div class="columns has-text-weight-semibold is-hidden-movile">
-            <div class="column has-text-weight-bold is-3">Descripción</div>
-            <div class="column has-text-weight-bold is-3">Categoría</div>
-            <div class="column has-text-weight-bold is-2 has-text-right">Fecha</div>
-            <div class="column has-text-weight-bold is-2 has-text-right">Monto</div>
-            <div class="column has-text-weight-bold is-2 has-text-right">Acciones</div>
-         </div>
+
 
         <div  class="mi-flex is-flex-direction-row"><div class="columns has-text-weight-semibold is-hidden-movile">
             <span class="column is-3">${descripcion}</span>
@@ -234,14 +250,70 @@ const pintoOperaciones = (arr) => {
             <span class="column is-2 has-text-right fecha">${fecha}</span>
             <span class="column is-2 has-text-right ${tipo ==  'Ganancia' ? 'green': 'red'}"> ${monto} </span>
             <span class="column is-2 has-text-right">
-            <a class="boton-editar data-id=${id} " href="#">Editar</a>
-            <a class="boton-borrar data-id=${id}" href="#">Borrar</a>        
+            <a class="boton-editar" data-id="${id}" href="#">Editar</a>
+            <a class="boton-borrar" data-id="${id}" href="#">Borrar</a>        
             </span>   
         </div>`
 
     })
     document.getElementById('con-operaciones').innerHTML = str;
+
+    var btnsBorrar = document.querySelectorAll('.boton-borrar');
+    
+    btnsBorrar.forEach(btn =>{
+        btn.addEventListener('click',e =>{
+            e.preventDefault();
+            
+
+            var respuesta = confirm("¿Seguro desea borrar la operacion?");
+
+            if(respuesta)
+            {
+                operaciones=operaciones.filter(operacion => operacion.id!=e.target.dataset.id);
+                pintoOperaciones(operaciones);
+                mostraroperaciones(operaciones);
+            }
+            else
+            {
+                pintoOperaciones(operaciones);
+                mostraroperaciones(operaciones);
+            }
+        })
+    })
+
+    var btnsEditar = document.querySelectorAll('.boton-editar');
+    
+    btnsEditar.forEach(btn =>{
+        btn.addEventListener('click',e =>{
+            e.preventDefault();
+            
+            vistaBalance.classList.add('is-hidden')
+            vistaCategoria.classList.add('is-hidden')
+            vistaReportes.classList.add('is-hidden')
+            vistaOperacion.classList.remove('is-hidden')
+
+            var ope=operaciones.filter(operacion => operacion.id==e.target.dataset.id)
+
+            idEditar = e.target.dataset.id;
+
+            descripcionInput.value=ope[0].descripcion;
+            montoInput.value=ope[0].monto;
+            tipoOperacion.value=ope[0].tipo;
+            categoriaSelect.value=ope[0].categoria;
+            FechaImput.value=ope[0].fecha;
+
+            editar=true;
+        })
+    })
+
+
+
 }
+
+
+
+
+
 
 
 
