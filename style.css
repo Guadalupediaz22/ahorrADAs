@@ -3,6 +3,11 @@ mi-flex{
     display:flex;
 }
 
+.btn button {
+    display: flex;
+    align-content: right;
+}
+
 .green{
     color: green;
 }

@@ -7,12 +7,13 @@ const verOperacion=  document.getElementById('btn-nueva-operacion')
 const verAgregarOperacionBtn=  document.getElementById('agregar-operacion-btn')
 const verCancelarOperacionBtn=  document.getElementById('cancelar-operacion-btn')
 //btn editar operacion
-const verEditoOperacion= document.getElementById('editar-operacion') //agrego editar operacion btn
-const verCancelarOperacion=document.getElementById('cancelar-operacion') //agrego  
+const verEditoOperacion= document.getElementById('editar-operacion') // editar operacion btn
+const verCancelarOperacion=document.getElementById('cancelar-operacion') 
 //btn elimina-cancela operacion 
-const btnEliminaOperacion= document.getElementById('btn-elimina') //agrego
-const btnCancelaOperacion= document.getElementById('btn-cancela') // agrego
+const btnEliminaOperacion= document.getElementById('btn-elimina') 
+const btnCancelaOperacion= document.getElementById('btn-cancela') 
  
+
 
 //nav
 const vistaBalance = document.getElementById('balance-box')
@@ -20,15 +21,19 @@ const vistaCategoria = document.getElementById('vista-categorias')
 const vistaReportes = document.getElementById('vista-reportes')
 const vistaOperacion= document.getElementById('vista-operacion')
 //nueva operacion
-const vistaEditarOperacion= document.getElementById('vista-editar-operacion')//agrego
-const vistaCancelarOperacion= document.getElementById('vista-editar-operacion')//agrego 
+const vistaEditarOperacion= document.getElementById('vista-editar-operacion')
+const vistaCancelarOperacion= document.getElementById('vista-editar-operacion')
 //editar operacion 
-const vistaEditoOperacion=document.getElementById('vista-edito-operacion')//agrego
-const vistaCancelOperacion= document.getElementById('vista-edito-operacion')//agrego
+const vistaEditoOperacion=document.getElementById('vista-edito-operacion')
+const vistaCancelOperacion= document.getElementById('vista-edito-operacion')
     
 //elimina operacion 
-const vistaEliminaOperacion = document.getElementById('elimina-operacion')//agrego
-//const vistaCxlOperacion= document.getElementById('elimina-operacion')//agrego
+const vistaEliminaOperacion = document.getElementById('elimina-operacion')
+//const vistaCxlOperacion= document.getElementById('elimina-operacion')
+
+const selectTipo = document.getElementById('tipo-filtro');
+const selectCat = document.getElementById('filtro-categoria');
+const fechaFiltro = document.getElementById('fecha-filtro');
 
 
 //inputs agrega operacion 
@@ -84,8 +89,8 @@ const mostraroperaciones = (arr) =>{
 vistaCategoria.classList.add('is-hidden')
 vistaReportes.classList.add('is-hidden')
 vistaOperacion.classList.add('is-hidden')
-vistaEditoOperacion.classList.add('is-hidden')/*agrego*/
-//vistaCancelarOperacion.classList.add('is-hidden')/*agrego*/
+vistaEditoOperacion.classList.add('is-hidden')
+//vistaCancelarOperacion.classList.add('is-hidden')
 vistaEliminaOperacion.classList.add('is-hidden')
 
 
@@ -94,8 +99,8 @@ verBalance.addEventListener('click', () =>{
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    //vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.classList.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')
+    vistaEliminaOperacion.classList.add('is-hidden')
 })
 
 verCategorias.addEventListener('click', () => {
@@ -103,8 +108,8 @@ verCategorias.addEventListener('click', () => {
     vistaCategoria.classList.remove('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    //vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.classList.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')
+    vistaEliminaOperacion.classList.add('is-hidden')
 
   })
 
@@ -113,8 +118,8 @@ verReportes.addEventListener ('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.remove('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    //vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.classList.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')
+    vistaEliminaOperacion.classList.add('is-hidden')
     
 })
 
@@ -123,8 +128,8 @@ verOperacion.addEventListener ('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.remove('is-hidden')
-    //vistaEditoOperacion.add('is-hidden')/*agrego*/
-    vistaEliminaOperacion.classList.add('is-hidden')//hoy
+    //vistaEditoOperacion.add('is-hidden')
+    vistaEliminaOperacion.classList.add('is-hidden')
 })
 
 
@@ -140,7 +145,7 @@ verCancelarOperacionBtn.addEventListener('click', () => {
     vistaCategoria.classList.add('is-hidden')
     vistaReportes.classList.add('is-hidden')
     vistaOperacion.classList.add('is-hidden')
-    vistaEliminaOperacion.classList.add('is-hidden')//hoy*/
+    vistaEliminaOperacion.classList.add('is-hidden')
 })
 
 verAgregarOperacionBtn.addEventListener('click', () => {
@@ -218,7 +223,26 @@ verAgregarOperacionBtn.addEventListener('click', () => {
 
 
 const pintoOperaciones = (arr) => {
-    document.getElementById('operaciones').innerHTML= '' //agrego
+
+    //filtro tipo
+    if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
+        arr=arr.filter(operacion => operacion.tipo.toLowerCase()==selectTipo.options[selectTipo.selectedIndex].text.toLowerCase());
+    
+    //filtro categoria
+    if(selectCat.options[selectCat.selectedIndex].text.toLowerCase() !="todas")
+        arr=arr.filter(operacion => operacion.categoria.toLowerCase()==selectCat.options[selectCat.selectedIndex].text.toLowerCase());
+
+    //filtro fecha
+    if(fechaFiltro.value!="")
+    {
+        arr=arr.filter(operacion => operacion.fecha==fechaFiltro.value);
+    }    
+
+    //aca va el ordenar
+    //suerte!!!
+
+
+    document.getElementById('operaciones').innerHTML= '' 
     let str= '';
 
     str =str + `
@@ -309,16 +333,37 @@ const pintoOperaciones = (arr) => {
 
 
 }
+/*
+//filtros agrego hoy
+
+//const selectTipo = document.getElementById('tipo-filtro')//esta arriba tambien
+
+const filtroTodos = document.getElementById('tipo-todos')
+const filtroGasto = document.getElementById('tipo-gastos')
+const filtroGanancia = document.getElementById('tipo-ganancia')
+*/
+
+selectTipo.addEventListener('change', (e)=>{
+   
+    pintoOperaciones(operaciones);
+    mostraroperaciones(operaciones);
+
+})
 
 
+selectCat.addEventListener('change', (e)=>{
+   
+    pintoOperaciones(operaciones);
+    mostraroperaciones(operaciones);
 
-
-
-
-
-
+})
   
+fechaFiltro.addEventListener('change', (e)=>{
+   
+    pintoOperaciones(operaciones);
+    mostraroperaciones(operaciones);
 
+})
 
 
         
