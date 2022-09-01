@@ -588,7 +588,7 @@ const balance = () => {
   };
   totalBalance();
 
-  MostrarBalance.innerHTML = `
+  mostrarBalance.innerHTML = `
   <h2 class="is-title is-size-3 mb-6 has-text-weight-bold" id="mostrarBalance">Balance</h2>
                         <div class="columns is-mobile is-vcentered">
                             <div class="column is-size-5">Ganancias</div>
