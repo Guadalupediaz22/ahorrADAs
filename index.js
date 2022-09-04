@@ -78,17 +78,10 @@ const generarCategorias = () => {
     selects.innerHTML = "";
     if (select.classList.contains("filtro-categoria")) {
       select.innerHTML = `<option>Todas</option>`;
-<<<<<<< Updated upstream
     }
     for (let j = 0; j < categorias.length; j++) {
       select.innerHTML += `<option value=${categoria[j]}>${categorias[j]}</option>`;
     }
-=======
-    }
-    for (let j = 0; j < categorias.length; j++) {
-      select.innerHTML += `<option value=${categoria[j]}>${categorias[j]}</option>`;
-    }
->>>>>>> Stashed changes
   }
 };
 
@@ -396,7 +389,6 @@ verAgregarOperacionBtn.addEventListener("click", () => {
   editar = false;
 });
 
-<<<<<<< Updated upstream
 vistaCategoria.classList.add("is-hidden");
 vistaReportes.classList.add("is-hidden");
 vistaOperacion.classList.add("is-hidden");
@@ -519,11 +511,6 @@ const pintoOperaciones = (arr) => {
   document.getElementById("operaciones").innerHTML = ""; //agrego
   let str = "";
 
-=======
-const pintoOperaciones = (arr) => {
-  document.getElementById("operaciones").innerHTML = ""; //agrego
-  let str = "";
->>>>>>> Stashed changes
   str =
     str +
     `
@@ -686,11 +673,6 @@ fechaFiltro.addEventListener('change', (e)=>{
 
 })
 
-<<<<<<< Updated upstream
-
-        
-        </div>`;
-  });
   document.getElementById("con-operaciones").innerHTML = str;
 
   var btnsBorrar = document.querySelectorAll(".boton-borrar");
@@ -740,7 +722,6 @@ fechaFiltro.addEventListener('change', (e)=>{
       editar = true;
     });
   });
-};
 
 //Balance
 const mostrarBalance = document.getElementById("mostrar-balance");
@@ -787,7 +768,4 @@ const balance = () => {
                             <div class="column has-text-right has-text-dark" id="total">$${totalBalance()}</div>
                         </div>`;
 };
-
-=======
->>>>>>> Stashed changes
 balance();
