@@ -9,18 +9,12 @@ const verCancelarOperacionBtn = document.getElementById(
   "cancelar-operacion-btn"
 );
 //btn editar operacion
-const verEditoOperacion= document.getElementById('editar-operacion') // editar operacion btn
 const verCancelarOperacion=document.getElementById('cancelar-operacion') 
 //btn elimina-cancela operacion 
 const btnEliminaOperacion= document.getElementById('btn-elimina') 
 const btnCancelaOperacion= document.getElementById('btn-cancela') 
 const verEditoOperacion = document.getElementById("editar-operacion"); //agrego editar operacion btn
-const verCancelarOperacion = document.getElementById("cancelar-operacion"); //agrego
 //btn elimina-cancela operacion
-const btnEliminaOperacion = document.getElementById("btn-elimina"); //agrego
-const btnCancelaOperacion = document.getElementById("btn-cancela"); // agrego
-
-
 
 //nav
 const vistaBalance = document.getElementById("balance-box");
@@ -36,20 +30,10 @@ const vistaCancelOperacion= document.getElementById('vista-edito-operacion')
     
 //elimina operacion 
 const vistaEliminaOperacion = document.getElementById('elimina-operacion')
-//const vistaCxlOperacion= document.getElementById('elimina-operacion')
 const selectTipo = document.getElementById('tipo-filtro');
 const selectCat = document.getElementById('filtro-categoria');
 const fechaFiltro = document.getElementById('fecha-filtro');
-const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
-const vistaCancelarOperacion = document.getElementById(
-  "vista-editar-operacion"
-); //agrego
-//editar operacion
-const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
-const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
 //elimina operacion
-const vistaEliminaOperacion = document.getElementById("elimina-operacion"); //agrego
-//const vistaCxlOperacion= document.getElementById('elimina-operacion')//agrego
 
 //inputs agrega operacion
 const descripcionInput = document.getElementById("descripcion");
@@ -246,30 +230,6 @@ verCancelarOperacionBtn.addEventListener('click', () => {
 
   editar = false;
 });
-
-const pintoOperaciones = (arr) => {
-
-    //filtro tipo
-    if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
-        arr=arr.filter(operacion => operacion.tipo.toLowerCase()==selectTipo.options[selectTipo.selectedIndex].text.toLowerCase());
-    
-    //filtro categoria
-    if(selectCat.options[selectCat.selectedIndex].text.toLowerCase() !="todas")
-        arr=arr.filter(operacion => operacion.categoria.toLowerCase()==selectCat.options[selectCat.selectedIndex].text.toLowerCase());
-
-    //filtro fecha
-    if(fechaFiltro.value!="")
-    {
-        arr=arr.filter(operacion => operacion.fecha==fechaFiltro.value);
-    }    
-
-    //aca va el ordenar
-    //suerte!!!
-
-
-    document.getElementById('operaciones').innerHTML= '' 
-    let str= '';
-  }
   
 vistaCategoria.classList.add("is-hidden");
 vistaReportes.classList.add("is-hidden");
@@ -508,8 +468,26 @@ verAgregarOperacionBtn.addEventListener("click", () => {
 });
 
 const pintoOperaciones = (arr) => {
-  document.getElementById("operaciones").innerHTML = ""; //agrego
-  let str = "";
+  //filtro tipo
+  if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
+  arr=arr.filter(operacion => operacion.tipo.toLowerCase()==selectTipo.options[selectTipo.selectedIndex].text.toLowerCase());
+
+//filtro categoria
+if(selectCat.options[selectCat.selectedIndex].text.toLowerCase() !="todas")
+  arr=arr.filter(operacion => operacion.categoria.toLowerCase()==selectCat.options[selectCat.selectedIndex].text.toLowerCase());
+
+//filtro fecha
+if(fechaFiltro.value!="")
+{
+  arr=arr.filter(operacion => operacion.fecha==fechaFiltro.value);
+}    
+
+//aca va el ordenar
+//suerte!!!
+
+
+document.getElementById('operaciones').innerHTML= '' 
+let str= ''; 
 
   str =
     str +
@@ -616,49 +594,6 @@ selectTipo.addEventListener('change', (e)=>{
     mostraroperaciones(operaciones);
 
 })
-
-const balance = () => {
-  let balanceDatos = LocalStorage();
-  let balanceArray = balanceDatos.operaciones;
-
-  const filtroGastos = balanceArray.filter((elemento) => {
-    return elemento.tipo === "gastos";
-  });
-
-  const sumaGastos = filtroGastos.reduce((acc, elemento, i) => {
-    return acc + elemento.monto;
-  }, 0);
-
-  const filtroGanancias = balanceArray.filter((elemento) => {
-    return elemento.tipo === "ganancias";
-  });
-
-  const sumaGanancias = filtroGanancias.reduce((acc, elemento, i) => {
-    return acc + elemento.monto;
-  }, 0);
-
-  const totalBalance = () => {
-    return sumaGastos - sumaGanancias;
-  };
-  totalBalance();
-
-  MostrarBalance.innerHTML = `
-  <h2 class="is-title is-size-3 mb-6 has-text-weight-bold" id="mostrarBalance">Balance</h2>
-                        <div class="columns is-mobile is-vcentered">
-                            <div class="column is-size-5">Ganancias</div>
-                            <div class="column has-text-right has-text-success" id="ganancias">+$${sumaGanancias}</div>
-                        </div>
-
-                        <div class="columns is-mobile is-vcentered">
-                            <div class="column is-size-5">Gastos</div>
-                            <div class="column has-text-right has-text-danger-dark" id="gastos">-$${sumaGastos}</div>
-                        </div>
-
-                        <div class="columns is-mobile is-vcentered">
-                            <div class="column is-size-5">Total</div>
-                            <div class="column has-text-right has-text-dark" id="total">$${totalBalance()}</div>
-                        </div>`;
-};
 selectCat.addEventListener('change', (e)=>{
    
     pintoOperaciones(operaciones);
@@ -673,7 +608,6 @@ fechaFiltro.addEventListener('change', (e)=>{
 
 })
 
-  document.getElementById("con-operaciones").innerHTML = str;
 
   var btnsBorrar = document.querySelectorAll(".boton-borrar");
 
@@ -768,4 +702,11 @@ const balance = () => {
                             <div class="column has-text-right has-text-dark" id="total">$${totalBalance()}</div>
                         </div>`;
 };
+
 balance();
+
+
+function LocalStorage(){
+
+  
+}
