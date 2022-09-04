@@ -201,6 +201,62 @@ verAgregarOperacionBtn.addEventListener("click", () => {
 });
 
 const pintoOperaciones = (arr) => {
+
+//filtro tipo
+    if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
+        arr=arr.filter(operacion => operacion.tipo.toLowerCase()==selectTipo.options[selectTipo.selectedIndex].text.toLowerCase());
+      
+//filtro categoria
+    if(selectCat.options[selectCat.selectedIndex].text.toLowerCase() !="todas")
+        arr=arr.filter(operacion => operacion.categoria.toLowerCase()==selectCat.options[selectCat.selectedIndex].text.toLowerCase());
+
+//filtro fecha
+    if(fechaFiltro.value!="")
+    {
+        arr=arr.filter(operacion => operacion.fecha==fechaFiltro.value); 
+        } 
+
+//filtro menor monto
+filtroOrden.addEventListener("change" , () =>{
+  if(filtroOrden.value === "MENOR_MONTO") {
+    const menorMonto = operaciones.sort(
+      (a,b) => Number(a.monto) = Number(b.monto)
+    )
+    pintoOperaciones(menorMonto)
+  }
+//filtro mayor monto
+  if(filtroOrden.value === "MAYOR_MONTO") {
+    const menorMonto = operaciones.sort (
+      (a,b) => Number(b.monto) - Number(a.monto)
+    )
+    pintoOperaciones(menorMonto)
+  }
+  //filtro AZ
+  if(filtroOrden.value === "A/Z") {
+    const az = operaciones.sort((a,b) => {
+      if(a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
+        return -1
+      }
+    })
+    pintoOperaciones(az)
+  }
+  //filtro ZA
+  if(filtroOrden.value === "Z/A") {
+    const za = operaciones.sort((a,b) => {
+      if(a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
+        return -1
+      }
+    })
+    pintoOperaciones(za)
+  }
+  //filtro mas reciente
+  if(filtroOrden.value === "MAS_RECIENTE") {
+    const reciente = operaciones.sort((a,b) =>
+    new Date(a.fecha) - new Date(b.fecha))
+    pintoOperaciones(reciente)
+  }
+  })
+
   document.getElementById("operaciones").innerHTML = ""; //agrego
   let str = "";
 
