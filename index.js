@@ -490,8 +490,7 @@ if(fechaFiltro.value!="")
 }    
 
 //aca va el ordenar
-//suerte!!!
-
+//suerte!!
 
 // document.getElementById('operaciones').innerHTML= '' 
 // let str= ''; 
