@@ -15,6 +15,8 @@ const btnEliminaOperacion= document.getElementById('btn-elimina')
 const btnCancelaOperacion= document.getElementById('btn-cancela') 
 const verEditoOperacion = document.getElementById("editar-operacion"); //agrego editar operacion btn
 //btn elimina-cancela operacion
+const btnEliminaOperacion = document.getElementById("btn-elimina"); //agrego
+const btnCancelaOperacion = document.getElementById("btn-cancela"); // agrego
 
 //nav
 const vistaBalance = document.getElementById("balance-box");
@@ -33,6 +35,14 @@ const vistaEliminaOperacion = document.getElementById('elimina-operacion')
 const selectTipo = document.getElementById('tipo-filtro');
 const selectCat = document.getElementById('filtro-categoria');
 const fechaFiltro = document.getElementById('fecha-filtro');
+const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
+const vistaCancelarOperacion = document.getElementById(
+  "vista-editar-operacion"
+); //agrego
+//editar operacion
+const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
+const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
+
 //elimina operacion
 
 //inputs agrega operacion
@@ -83,7 +93,6 @@ const mostraroperaciones = (arr) => {
 };
 
 //mostraroperaciones(operaciones);
-
 
 vistaCategoria.classList.add('is-hidden')
 vistaReportes.classList.add('is-hidden')
@@ -489,6 +498,64 @@ if(fechaFiltro.value!="")
 document.getElementById('operaciones').innerHTML= '' 
 let str= ''; 
 
+//filtro tipo
+    if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
+        arr=arr.filter(operacion => operacion.tipo.toLowerCase()==selectTipo.options[selectTipo.selectedIndex].text.toLowerCase());
+      
+//filtro categoria
+    if(selectCat.options[selectCat.selectedIndex].text.toLowerCase() !="todas")
+        arr=arr.filter(operacion => operacion.categoria.toLowerCase()==selectCat.options[selectCat.selectedIndex].text.toLowerCase());
+
+//filtro fecha
+    if(fechaFiltro.value!="")
+    {
+        arr=arr.filter(operacion => operacion.fecha==fechaFiltro.value); 
+        } 
+
+//filtro menor monto
+filtroOrden.addEventListener("change" , () =>{
+  if(filtroOrden.value === "MENOR_MONTO") {
+    const menorMonto = operaciones.sort(
+      (a,b) => Number(a.monto) = Number(b.monto)
+    )
+    pintoOperaciones(menorMonto)
+  }
+//filtro mayor monto
+  if(filtroOrden.value === "MAYOR_MONTO") {
+    const menorMonto = operaciones.sort (
+      (a,b) => Number(b.monto) - Number(a.monto)
+    )
+    pintoOperaciones(menorMonto)
+  }
+  //filtro AZ
+  if(filtroOrden.value === "A/Z") {
+    const az = operaciones.sort((a,b) => {
+      if(a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
+        return -1
+      }
+    })
+    pintoOperaciones(az)
+  }
+  //filtro ZA
+  if(filtroOrden.value === "Z/A") {
+    const za = operaciones.sort((a,b) => {
+      if(a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
+        return -1
+      }
+    })
+    pintoOperaciones(za)
+  }
+  //filtro mas reciente
+  if(filtroOrden.value === "MAS_RECIENTE") {
+    const reciente = operaciones.sort((a,b) =>
+    new Date(a.fecha) - new Date(b.fecha))
+    pintoOperaciones(reciente)
+  }
+  })
+
+  document.getElementById("operaciones").innerHTML = ""; //agrego
+  let str = "";
+
   str =
     str +
     `
@@ -608,7 +675,6 @@ fechaFiltro.addEventListener('change', (e)=>{
 
 })
 
-
   var btnsBorrar = document.querySelectorAll(".boton-borrar");
 
   btnsBorrar.forEach((btn) => {
@@ -659,3 +725,49 @@ fechaFiltro.addEventListener('change', (e)=>{
 
 //Balance
 const mostrarBalance = document.getElementById("mostrar-balance");
+const mostrarBalance = document.getElementById("mostrar-balance");
+
+const balance = () => {
+  let balanceDatos = LocalStorage();
+  let balanceArray = balanceDatos.operaciones;
+
+  const filtroGastos = balanceArray.filter((elemento) => {
+    return elemento.tipo === "gastos";
+  });
+
+  const sumaGastos = filtroGastos.reduce((acc, elemento, i) => {
+    return acc + elemento.monto;
+  }, 0);
+
+  const filtroGanancias = balanceArray.filter((elemento) => {
+    return elemento.tipo === "ganancias";
+  });
+
+  const sumaGanancias = filtroGanancias.reduce((acc, elemento, i) => {
+    return acc + elemento.monto;
+  }, 0);
+
+  const totalBalance = () => {
+    return sumaGastos - sumaGanancias;
+  };
+  totalBalance();
+
+  mostrarBalance.innerHTML = `
+  <h2 class="is-title is-size-3 mb-6 has-text-weight-bold" id="mostrarBalance">Balance</h2>
+                        <div class="columns is-mobile is-vcentered">
+                            <div class="column is-size-5">Ganancias</div>
+                            <div class="column has-text-right has-text-success" id="ganancias">+$${sumaGanancias}</div>
+                        </div>
+
+                        <div class="columns is-mobile is-vcentered">
+                            <div class="column is-size-5">Gastos</div>
+                            <div class="column has-text-right has-text-danger-dark" id="gastos">-$${sumaGastos}</div>
+                        </div>
+
+                        <div class="columns is-mobile is-vcentered">
+                            <div class="column is-size-5">Total</div>
+                            <div class="column has-text-right has-text-dark" id="total">$${totalBalance()}</div>
+                        </div>`;
+};
+
+balance();
