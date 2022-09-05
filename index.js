@@ -35,11 +35,11 @@ const vistaEliminaOperacion = document.getElementById('elimina-operacion')
 const selectTipo = document.getElementById('tipo-filtro');
 const selectCat = document.getElementById('filtro-categoria');
 const fechaFiltro = document.getElementById('fecha-filtro');
-const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
-const vistaCancelarOperacion = document.getElementById("vista-editar-operacion"); //agrego
+// const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
+// const vistaCancelarOperacion = document.getElementById("vista-editar-operacion"); //agrego
 //editar operacion
-const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
-const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
+// const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
+// const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
 
 //elimina operacion
 
