@@ -295,10 +295,10 @@ verCancelarOperacionBtn.addEventListener("click", () => {
 verAgregarOperacionBtn.addEventListener("click", () => {
   //console.log(descripcionInput.value.trim().length)
 
-  if (descripcionInput.value.trim().length == 0) {
+  /*if (descripcionInput.value.trim().length == 0) {
     alert("Ingrese una descripción válida.");
     return;
-  }
+  }*/
 
   if (montoInput.value == 0) {
     alert("Debe ingresar el monto antes de continuar.");
@@ -413,10 +413,10 @@ verCancelarOperacionBtn.addEventListener("click", () => {
 verAgregarOperacionBtn.addEventListener("click", () => {
   //console.log(descripcionInput.value.trim().length)
 
-  if (descripcionInput.value.trim().length == 0) {
+  /*if (descripcionInput.value.trim().length == 0) {
     alert("Ingrese una descripción válida.");
     return;
-  }
+  }*/
 
   if (montoInput.value == 0) {
     alert("Debe ingresar el monto antes de continuar.");
