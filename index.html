@@ -18,10 +18,10 @@
             <div class="navbar-brand">
                 <a class="navbar-item">
                     <img src="imagenes/wallet.png" style="height:70px;" class="img-thumbnail me-1" alt="" width="50"
-                        height="50">
+                    height="50">
                     <h1 class="title is-size-2-desktop is-size-3 has-text-white ">
-                        AhorrADAs
-                        <!--<i class="fa-solid fa-wallet"></i><i class="far fa-wallet"></i>-->
+                    AhorrADAs
+                    <!--<i class="fa-solid fa-wallet"></i><i class="far fa-wallet"></i>-->
                     </h1>
                 </a>
                 <div class="navbar-burger burger">
@@ -240,8 +240,12 @@
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" class="form-control" id="descripcion" aria-describedby="fecha-imput">
                     </div>
-                    <button id="agregar-operacion-btn" type="button" class="btn button is-info">Aceptar</button>
-                    <button id="cancelar-operacion-btn" type="button" class="btn button is-info">Cancelar</button>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button id="agregar-operacion-btn" type="button" class="btn button is-info ">Aceptar</button>
+                        <button id="cancelar-operacion-btn" type="button" class="btn button is-info ">Cancelar</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>
@@ -402,11 +406,12 @@
         </div>
     </div>
 
-    <!--fin categorias--!>
+    <!--fin categorias-->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js" type="text/javascript"></script>
 
     <script src="index.js" type="text/javascript"></script>
+    <script src="balance.js" type="text/javascript"></script>
 
 </body>
 
