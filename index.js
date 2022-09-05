@@ -15,8 +15,8 @@ const btnEliminaOperacion= document.getElementById('btn-elimina')
 const btnCancelaOperacion= document.getElementById('btn-cancela') 
 const verEditoOperacion = document.getElementById("editar-operacion"); //agrego editar operacion btn
 //btn elimina-cancela operacion
-const btnEliminaOperacion = document.getElementById("btn-elimina"); //agrego
-const btnCancelaOperacion = document.getElementById("btn-cancela"); // agrego
+// const btnEliminaOperacion = document.getElementById("btn-elimina"); //agrego
+// const btnCancelaOperacion = document.getElementById("btn-cancela"); // agrego
 
 //nav
 const vistaBalance = document.getElementById("balance-box");
@@ -35,13 +35,11 @@ const vistaEliminaOperacion = document.getElementById('elimina-operacion')
 const selectTipo = document.getElementById('tipo-filtro');
 const selectCat = document.getElementById('filtro-categoria');
 const fechaFiltro = document.getElementById('fecha-filtro');
-const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
-const vistaCancelarOperacion = document.getElementById(
-  "vista-editar-operacion"
-); //agrego
+// const vistaEditarOperacion = document.getElementById("vista-editar-operacion"); //agrego
+// const vistaCancelarOperacion = document.getElementById("vista-editar-operacion"); //agrego
 //editar operacion
-const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
-const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
+// const vistaEditoOperacion = document.getElementById("vista-edito-operacion"); //agrego
+// const vistaCancelOperacion = document.getElementById("vista-edito-operacion"); //agrego
 
 //elimina operacion
 
@@ -495,8 +493,8 @@ if(fechaFiltro.value!="")
 //suerte!!!
 
 
-document.getElementById('operaciones').innerHTML= '' 
-let str= ''; 
+// document.getElementById('operaciones').innerHTML= '' 
+// let str= ''; 
 
 //filtro tipo
     if(selectTipo.options[selectTipo.selectedIndex].text.toLowerCase() !="todos")
@@ -724,9 +722,7 @@ fechaFiltro.addEventListener('change', (e)=>{
   });
 
 //Balance
-const mostrarBalance = document.getElementById("mostrar-balance");
-const mostrarBalance = document.getElementById("mostrar-balance");
-
+/*const mostrarBalance = document.getElementById("mostrar-balance");
 const balance = () => {
   let balanceDatos = LocalStorage();
   let balanceArray = balanceDatos.operaciones;
@@ -769,5 +765,4 @@ const balance = () => {
                             <div class="column has-text-right has-text-dark" id="total">$${totalBalance()}</div>
                         </div>`;
 };
-
-balance();
+balance();*/
